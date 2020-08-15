@@ -1,0 +1,99 @@
+{
+    "bridge": {
+        "name": "Homebridge DA72",
+        "username": "0E:CD:2F:91:DA:72",
+        "port": 53107,
+        "pin": "031-45-154"
+    },
+    "accessories": [
+        {
+            "name": "test",
+            "stateful": false,
+            "reverse": false,
+            "time": 1000,
+            "accessory": "DummySwitch"
+        },
+        {
+            "accessory": "mqttthing",
+            "type": "custom",
+            "name": "Composite",
+            "url": "mqtts://io.adafruit.com:8883",
+            "username": "roadmapper",
+            "password": "aio_gXII16qiqTi0XJybosAMW1kZx42Q",
+            "mqttPubOptions": {
+                "retain": true
+            },
+            "logMqtt": true,
+            "services": [
+                {
+                    "type": "heaterCooler",
+                    "name": "GE Air Conditioner",
+                    "manufacturer": "GE",
+                    "model": "AJCQ08ACF",
+                    "topics": {
+                        "getOnline": "roadmapper/feeds/aircon-state",
+                        "getActive": "roadmapper/feeds/aircon-state",
+                        "setActive": "roadmapper/feeds/aircon-state",
+                        "getCoolingThresholdTemperature": "roadmapper/feeds/aircon-temp",
+                        "setCoolingThresholdTemperature": "roadmapper/feeds/aircon-temp-control",
+                        "getCurrentHeaterCoolerState": "roadmapper/feeds/aircon-state",
+                        "getCurrentTemperature": "roadmapper/feeds/aircon-temp",
+                        "getTargetHeaterCoolerState": "roadmapper/feeds/aircon-state",
+                        "setTargetHeaterCoolerState": "roadmapper/feeds/aircon-state"
+                    },
+                    "onlineValue": "power",
+                    "offlineValue": "power",
+                    "minTemperature": 16,
+                    "maxTemperature": 29,
+                    "restrictHeaterCoolerState": [
+                        2
+                    ]
+                },
+                {
+                    "type": "fan",
+                    "name": "GE Air Conditioner",
+                    "topics": {
+                        "getOn": "roadmapper/feeds/aircon-state",
+                        "getRotationSpeed": "roadmapper/feeds/aircon-state",
+                        "setRotationSpeed": "roadmapper/feeds/aircon-state"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "heaterCooler",
+            "name": "GE Air Conditioner",
+            "manufacturer": "GE",
+            "model": "AJCQ08ACF",
+            "url": "mqtts://io.adafruit.com:8883",
+            "username": "roadmapper",
+            "password": "aio_gXII16qiqTi0XJybosAMW1kZx42Q",
+            "mqttPubOptions": {
+                "retain": true
+            },
+            "logMqtt": true,
+            "topics": {
+                "getOnline": "roadmapper/feeds/aircon-state",
+                "getActive": "roadmapper/feeds/aircon-state",
+                "setActive": "roadmapper/feeds/aircon-state",
+                "getCoolingThresholdTemperature": "roadmapper/feeds/aircon-temp",
+                "setCoolingThresholdTemperature": "roadmapper/feeds/aircon-temp-control",
+                "getCurrentHeaterCoolerState": "roadmapper/feeds/aircon-state",
+                "getCurrentTemperature": "roadmapper/feeds/aircon-temp",
+                "getTargetHeaterCoolerState": "roadmapper/feeds/aircon-state",
+                "setTargetHeaterCoolerState": "roadmapper/feeds/aircon-state",
+                "getRotationSpeed": "roadmapper/feeds/aircon-state",
+                "setRotationSpeed": "roadmapper/feeds/aircon-state"
+            },
+            "onlineValue": "power",
+            "offlineValue": "power",
+            "minTemperature": 16,
+            "maxTemperature": 29,
+            "restrictHeaterCoolerState": [
+                2
+            ],
+            "accessory": "mqttthing"
+        }
+    ],
+    "platforms": []
+}
